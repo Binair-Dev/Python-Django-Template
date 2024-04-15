@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Détails du livre{% endblock %}
+{% block content %}
+<h1>Détails du livre</h1>
+<hr>
+{% if book %}
+<h4>Titre: {{ book.titre }}</h4>
+<p>Auteur : {{ book.auteur }}</p>
+{% endif %}
+{% if not book %}
+<h4>Le livre n'existe pas</h4>
+{% endif %}
+{% endblock %}
