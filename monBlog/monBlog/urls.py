@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
-from article import views as views
+from . import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.home),
     path('books/', include('books.urls'))
 ]
