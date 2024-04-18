@@ -66,3 +66,9 @@ def article_delete(request, id):
         return response
     else:
         return redirect('article_list')
+
+def article_deleteall(request):
+    if request.method == 'POST':
+        Article.objects.all().delete()        
+        response = HttpResponse('<script>alert("Tous les articles ont été supprimés avec succès."); window.location.href="/";</script>')
+        return response

@@ -22,6 +22,11 @@
 <div class="container">
     <h1>Nos articles</h1>
     <hr>
+    <form method="POST" action="/article/delete/all/">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger">Supprimer tout les articles</button>
+    </form>
+    <hr>
     <ul class="articles">
         {% for article in articles %}
         <li class="article">
