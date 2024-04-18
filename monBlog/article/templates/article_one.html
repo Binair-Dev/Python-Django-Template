@@ -2,20 +2,14 @@
 {% block title %}Liste des articles{% endblock %}
 {% block titleContent %}Liste des articles{% endblock %}
 {% block content %}
-<button><a href="{% url 'article_create' %}">Créer un article</a></button>
-<button><a href="{% url 'author_create' %}">Créer un auteur</a></button>
 <div class="container">
-    <h1>Nos articles</h1>
-    <hr>
     <ul class="articles">
-        {% for article in articles %}
         <li class="article">
             <h2>{{ article.title }}</h2>
             <p>{{ article.content }}</p>
             <p><strong>{{ article.author }}</strong></p>
         </li>
         <hr>
-        {% endfor %}
     </ul>
 </div>
 {% endblock%}

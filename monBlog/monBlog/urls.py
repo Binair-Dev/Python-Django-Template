@@ -7,8 +7,8 @@ from article import views as article_views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.home),
-
-    path('article/create/', article_views.article_create),
-    path('article/', article_views.article_list),
+    path('', article_views.article_list, name='article_list'),#Nommer pour rediriger avec un "redirect()"
+    path('article/<int:id>/', article_views.article_one),
+    path('article/create/', article_views.article_create, name='article_create'),
+    path('author/create/', article_views.author_create, name='author_create'),
 ]
