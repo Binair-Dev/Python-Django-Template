@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Liste des articles{% endblock %}
-{% block titleContent %}Liste des articles{% endblock %}
 {% block content %}
-<button><a href="{% url 'article_create' %}">Créer un article</a></button>
-<button><a href="{% url 'author_create' %}">Créer un auteur</a></button>
 <div class="container">
     <h1>Nos articles</h1>
+    <!-- <button><a href="{% url 'article_create' %}">Créer un article</a></button>
+    <button><a href="{% url 'author_create' %}">Créer un auteur</a></button> -->
     <hr>
     <ul class="articles">
         {% for article in articles %}

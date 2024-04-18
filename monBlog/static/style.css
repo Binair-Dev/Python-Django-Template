@@ -16,3 +16,7 @@ body {
 .book-info p {
     margin: 10px 0;
 }
+
+.center {
+    text-align: center;
+}
