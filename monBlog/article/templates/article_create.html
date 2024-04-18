@@ -1,15 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %}
 {% block title %}Création des articles{% endblock %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<h2>Création d'un utilisateur</h2>
+<hr>
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-6">
-      <form>
-        {% csrf_token %}
-        {{ form.as_p }}
+  <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <div class="d-flex justify-content-center">
         <button type="POST" class="btn btn-primary">Envoyer</button>
-      </form>
-    </div>
-  </div>
+      </div>
+  </form>
 </div>
 {% endblock%}

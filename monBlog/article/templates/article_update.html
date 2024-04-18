@@ -1,9 +1,16 @@
-{% extends 'base.html' %}
-{% block title %}Mettre à jour l'articles{% endblock %}
+{% extends 'base.html' %}{% load static %}
+{% block title %}Création des articles{% endblock %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Mettre à jour</button>
-</form>
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<h2>Création d'un utilisateur</h2>
+<hr>
+<div class="container">
+  <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <div class="d-flex justify-content-center">
+        <button type="POST" class="btn btn-primary">Envoyer</button>
+      </div>
+  </form>
+</div>
 {% endblock%}

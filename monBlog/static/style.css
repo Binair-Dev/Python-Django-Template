@@ -1,18 +1,30 @@
-body {
-    font-family: Arial, sans-serif;
-}
-.book-info {
-    margin: 20px auto;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 300px;
     padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    background-color: red;
 }
-.book-info h2 {
-    font-size: 1.5em;
-    margin-top: 0;
-    color: #333;
+
+.container label {
+  display: block;
+  margin-bottom: 10px;
 }
-.book-info p {
-    margin: 10px 0;
+
+.container button {
+  margin-top: 10px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.black-text {
+  color: black;
+}
+
+.inline-flex-padded {
+  display: flex;
+  padding-left: 10px;
 }

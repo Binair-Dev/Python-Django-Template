@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Liste des articles{% endblock %}
 {% block content %}
+<style>
+    .inline-flex-padded {
+        display: flex;
+    }
+
+    button {
+        margin-right:  10px;
+    }
+</style>
 <div class="container">
     <h1>Nos articles</h1>
     <hr>
@@ -10,7 +19,13 @@
             <h2>{{ article.title }}</h2>
             <p>{{ article.content }}</p>
             <p><strong>{{ article.author }}</strong></p>
-            <button><a href="/article/update/{{ article.id }}">Mettre à jour un article</a></button>
+            <div class="inline-flex-padded">
+                <button class="btn btn-outline-primary"><a class="black-text" href="/article/update/{{ article.id }}">Mettre à jour un article</a></button>
+                <form method="POST" action="/article/delete/{{ article.id }}/">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+                </form>
+            </div>
         </li>
         <hr>
         {% endfor %}

@@ -56,3 +56,13 @@ def article_update(request, id):
         article = Article.objects.get(id=id)
         form = Update_article_form(instance=article)
         return render(request, 'article_update.html', {'form': form})
+    
+
+
+def article_delete(request, id):
+    if request.method == 'POST':
+        Article.objects.filter(id=id).delete()        
+        response = HttpResponse('<script>alert("L\'article a été supprimé avec succès."); window.location.href="/";</script>')
+        return response
+    else:
+        return redirect('article_list')
