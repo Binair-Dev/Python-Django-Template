@@ -23,8 +23,3 @@ h2 {
 .black-text {
   color: black;
 }
-
-.inline-flex-padded {
-  display: flex;
-  padding-left: 10px;
-}
