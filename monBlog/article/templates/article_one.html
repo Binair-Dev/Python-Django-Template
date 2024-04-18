@@ -5,9 +5,13 @@
 <div class="container">
     <ul class="articles">
         <li class="article">
-            <h2>{{ article.title }}</h2>
-            <p>{{ article.content }}</p>
-            <p><strong>{{ article.author }}</strong></p>
+            {% if article != None %}
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.content }}</p>
+                <p><strong>{{ article.author }}</strong></p>
+            {% else %}
+                <h2>L'article n'existe pas.</h2>
+            {% endif %}
         </li>
         <hr>
     </ul>

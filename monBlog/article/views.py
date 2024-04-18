@@ -9,7 +9,7 @@ def article_list(request):
 
 def article_one(request, id):
     try:
-        article = get_object_or_404(Article, id=id)
+        article = Article.objects.get(id=id)
         return render(request, 'article_one.html', {'article': article})
     except Article.DoesNotExist:
         return render(request, 'article_one.html', {'article': None})
