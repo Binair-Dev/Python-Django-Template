@@ -11,3 +11,8 @@ class Create_author_form(ModelForm):
     class Meta:
         model = Author
         fields = '__all__'
+
+class Update_article_form(ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'author', 'content']

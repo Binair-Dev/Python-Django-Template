@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Création des articles{% endblock %}
-{% block titleContent %}Création des articles{% endblock %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Envoyer</button>
-</form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <form>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="POST" class="btn btn-primary">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock%}

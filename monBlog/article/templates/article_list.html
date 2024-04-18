@@ -3,8 +3,6 @@
 {% block content %}
 <div class="container">
     <h1>Nos articles</h1>
-    <!-- <button><a href="{% url 'article_create' %}">Créer un article</a></button>
-    <button><a href="{% url 'author_create' %}">Créer un auteur</a></button> -->
     <hr>
     <ul class="articles">
         {% for article in articles %}
@@ -12,6 +10,7 @@
             <h2>{{ article.title }}</h2>
             <p>{{ article.content }}</p>
             <p><strong>{{ article.author }}</strong></p>
+            <button><a href="/article/update/{{ article.id }}">Mettre à jour un article</a></button>
         </li>
         <hr>
         {% endfor %}
