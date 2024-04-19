@@ -16,3 +16,6 @@ class Update_article_form(ModelForm):
     class Meta:
         model = Article
         fields = ['title', 'author', 'content']
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Recherche', max_length=100)

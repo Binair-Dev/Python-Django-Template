@@ -1,10 +1,22 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Article
 from .forms import Create_article_form, Create_author_form, Update_article_form
+from django.db.models import Q
 
 def article_list(request):
-    articles = Article.objects.all()
+    query = request.GET.get('book_list', '')
+    if query:
+        articles = Article.objects.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query)
+        )
+        print('Query = ')
+        print(articles)
+    else:
+        articles = Article.objects.all()
+        print('NO Query = ')
+        print(articles)
     return render(request, 'article_list.html', {'articles': articles})
 
 def article_one(request, id):
