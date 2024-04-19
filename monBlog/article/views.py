@@ -11,12 +11,8 @@ def article_list(request):
             Q(title__icontains=query) |
             Q(content__icontains=query)
         )
-        print('Query = ')
-        print(articles)
     else:
         articles = Article.objects.all()
-        print('NO Query = ')
-        print(articles)
     return render(request, 'article_list.html', {'articles': articles})
 
 def article_one(request, id):
