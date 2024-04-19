@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from article import views as article_views
+from users import views as users_views
 
 
 urlpatterns = [
@@ -13,4 +14,8 @@ urlpatterns = [
     path('article/update/<int:id>/', article_views.article_update),
     path('article/delete/<int:id>/', article_views.article_delete),
     path('article/delete/all/', article_views.article_deleteall),
+
+    path('users/', users_views.users, name='users'),
+    path('register/', users_views.register, name='register'),
+    path('login/', users_views.login_view, name='login'),
 ]

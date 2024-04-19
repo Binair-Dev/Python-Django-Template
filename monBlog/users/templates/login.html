@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}Mise a jour de l'articles{% endblock %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<h2>Mise a jour de l'articles</h2>
+<hr>
+<div class="container">
+  <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <div class="d-flex justify-content-center">
+        <button type="POST" class="btn btn-primary">Envoyer</button>
+      </div>
+  </form>
+</div>
+{% endblock%}
