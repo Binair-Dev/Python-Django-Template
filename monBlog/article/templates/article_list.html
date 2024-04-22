@@ -30,10 +30,12 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
     </form>
     <hr>
+    {% if request.user.is_authenticated %}
     <form method="POST" action="/article/delete/all/">
         {% csrf_token %}
         <button type="submit" class="btn btn-outline-danger">Supprimer tout les articles</button>
     </form>
+    {% endif %}
     <hr>
     <ul class="articles">
         {% for article in articles %}
@@ -42,6 +44,7 @@
                 <h2>{{ article.title }}</h2>
                 <p>{{ article.content }}</p>
                 <p><strong>{{ article.author }}</strong></p>
+                {% if request.user.is_authenticated %}
                 <div class="inline-flex-padded">
                     <button class="btn btn-outline-primary"><a class="black-text"
                             href="/article/update/{{ article.id }}">Mettre à jour un article</a></button>
@@ -50,6 +53,7 @@
                         <button type="submit" class="btn btn-outline-danger">Supprimer</button>
                     </form>
                 </div>
+                {% endif %}
             </a>
         </li>
         <hr>

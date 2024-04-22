@@ -16,6 +16,7 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Accueil</a>
               </li>
+              {% if request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="/author/create/">Créer un auteur</a>
               </li>
@@ -23,17 +24,20 @@
                 <a class="nav-link" href="/article/create/">Créer un article</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/login/">Login</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="/logout/">Logout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/register/">Register</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/users/">Liste des utilisateurs</a>
               </li>
+              {% endif %}
+              {% if not request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/login/">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/register/">Register</a>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>
