@@ -23,60 +23,78 @@ def article_one(request, id):
         return render(request, 'article_one.html', {'article': None})
 
 def article_create(request):
-    if request.method == 'POST':
-        form = Create_article_form(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            author = form.cleaned_data['author']
-            content = form.cleaned_data['content']
-            form.save()
-            return redirect('article_list')
+    user = request.user
+    if(user.is_authenticated):
+        if request.method == 'POST':
+            form = Create_article_form(request.POST)
+            if form.is_valid():
+                title = form.cleaned_data['title']
+                author = form.cleaned_data['author']
+                content = form.cleaned_data['content']
+                form.save()
+                return redirect('article_list')
+        else:
+            form = Create_article_form()
+        return render(request, 'article_create.html', {'form': form})
     else:
-        form = Create_article_form()
-    return render(request, 'article_create.html', {'form': form})
+        return redirect('login')
 
 def author_create(request):
-    if request.method == 'POST':
-        form = Create_author_form(request.POST)
-        if form.is_valid():
-            last_name = form.cleaned_data['last_name']
-            first_name = form.cleaned_data['first_name']
-            form.save()
-            return redirect('article_list')
+    user = request.user
+    if(user.is_authenticated):
+        if request.method == 'POST':
+            form = Create_author_form(request.POST)
+            if form.is_valid():
+                last_name = form.cleaned_data['last_name']
+                first_name = form.cleaned_data['first_name']
+                form.save()
+                return redirect('article_list')
+        else:
+            form = Create_author_form()
+        return render(request, 'author_create.html', {'form': form})
     else:
-        form = Create_author_form()
-    return render(request, 'author_create.html', {'form': form})
+        return redirect('login')
 
 
 def article_update(request, id):
-    if request.method == 'POST':
-        form = Update_article_form(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            author = form.cleaned_data['author']
-            content = form.cleaned_data['content']
-            Article.objects.filter(id=id).update(title=title, author=author, content=content)
-            return redirect('article_list')
-        article = Article.objects.get(id=id)
-        form = Update_article_form(instance=article)
-        return render(request, 'article_update.html', {'form': form})
+    user = request.user
+    if(user.is_authenticated):
+        if request.method == 'POST':
+            form = Update_article_form(request.POST)
+            if form.is_valid():
+                title = form.cleaned_data['title']
+                author = form.cleaned_data['author']
+                content = form.cleaned_data['content']
+                Article.objects.filter(id=id).update(title=title, author=author, content=content)
+                return redirect('article_list')
+            article = Article.objects.get(id=id)
+            form = Update_article_form(instance=article)
+            return render(request, 'article_update.html', {'form': form})
+        else:
+            article = Article.objects.get(id=id)
+            form = Update_article_form(instance=article)
+            return render(request, 'article_update.html', {'form': form})
     else:
-        article = Article.objects.get(id=id)
-        form = Update_article_form(instance=article)
-        return render(request, 'article_update.html', {'form': form})
-    
+        return redirect('login')
 
 
 def article_delete(request, id):
-    if request.method == 'POST':
-        Article.objects.filter(id=id).delete()        
-        response = HttpResponse('<script>alert("L\'article a été supprimé avec succès."); window.location.href="/";</script>')
-        return response
+    user = request.user
+    if(user.is_authenticated):
+        if request.method == 'POST':
+            Article.objects.filter(id=id).delete()        
+            response = HttpResponse('<script>alert("L\'article a été supprimé avec succès."); window.location.href="/";</script>')
+            return response
+        else:
+            return redirect('article_list')
     else:
-        return redirect('article_list')
+        return redirect('login')
 
 def article_deleteall(request):
-    if request.method == 'POST':
-        Article.objects.all().delete()        
+    user = request.user
+    if(user.is_authenticated):
+        Article.objects.all().delete()
         response = HttpResponse('<script>alert("Tous les articles ont été supprimés avec succès."); window.location.href="/";</script>')
         return response
+    else:
+        return redirect('login')
